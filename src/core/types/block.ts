@@ -1,4 +1,5 @@
 import { blockWidth } from "../constants/block";
+import { WidgetConfig } from "./widget";
 
 export type BlockType = keyof typeof blockWidth;
 
@@ -10,7 +11,7 @@ export type BlockItem = {
   initialColumn: 1 | 2 | 3 | 4 | 5;
   finalRow: 1 | 2 | 3 | 4;
   finalColumn: 1 | 2 | 3 | 4 | 5;
-  widgetType: any;
+  widgetConfig: WidgetConfig;
 };
 
 // Each block contain up to 4 widgets
