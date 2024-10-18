@@ -1,5 +1,3 @@
-export type WidgetSpanConfig = `span ${number}`;
-
 // grid row/column ratio
 export type WidgetRatio =
   | "1/2"
@@ -15,8 +13,8 @@ export type WidgetRatio =
 
 export type WidgetRatioConfig = {
   aspectRatio: number;
-  gridRow: WidgetSpanConfig;
-  gridColumn: WidgetSpanConfig;
+  gridRowSpan: number;
+  gridColumnSpan: number;
 };
 
 export type WidgetConfig = Record<WidgetRatio, WidgetRatioConfig>;

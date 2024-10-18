@@ -1,29 +1,48 @@
 import { ReactNode } from "react";
 
-import { Box } from "@arcotech-services/iris-react";
 import { Tokens } from "@arcotech-services/iris-tokens";
+import { GridItem } from "@chakra-ui/layout";
 
-import { WidgetRatioConfig } from "../../core/types/widget";
+import { widgetRatios } from "../../core/constants/widget";
+import { BlockItem } from "../../core/types/block";
+import type { WidgetRatio } from "../../core/types/widget";
 
 export type BaseWidgetProps = {
-  aspectRatio: WidgetRatioConfig["aspectRatio"];
   children: ReactNode;
   className?: string;
   variant?: "default" | "transparent";
+} & BlockItem;
+
+const getWidgetConfig = (type: WidgetRatio) => {
+  const config = widgetRatios[type];
+
+  return config;
 };
 
 export function BaseWidget({
-  aspectRatio,
+  widgetType,
+  order,
+  initialRow,
+  initialColumn,
+  finalRow,
+  finalColumn,
   children,
   className,
   variant = "default",
 }: BaseWidgetProps) {
+  const widgetConfig = getWidgetConfig(widgetType);
+
   return (
-    <Box
+    <GridItem
+      order={order}
+      rowStart={initialRow}
+      gridColumnStart={initialColumn}
+      rowEnd={finalRow}
+      colEnd={finalColumn}
       className={className}
-      aspectRatio={aspectRatio}
-      width="100%"
-      height="100%"
+      colSpan={widgetConfig.gridColumnSpan}
+      rowSpan={widgetConfig.gridRowSpan}
+      aspectRatio={widgetConfig.aspectRatio}
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -42,6 +61,6 @@ export function BaseWidget({
       }
     >
       {children}
-    </Box>
+    </GridItem>
   );
 }
