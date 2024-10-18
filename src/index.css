@@ -1,4 +1,4 @@
-@import "@arcotech-services/iris-tokens/dist/scss/iris-tokens-core.scss";
+@import "@arcotech-services/iris-tokens/theme-core.css";
 @import "@arcotech-services/iris-react/css/index.css";
 
 /* reset */

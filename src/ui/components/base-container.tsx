@@ -16,7 +16,7 @@ export function BaseContainer({
   className,
   variant = "default",
 }: BaseContainerProps) {
-  const { isDesktop } = useDevice();
+  const { viewportWidth } = useDevice();
 
   return (
     <Box
@@ -27,7 +27,7 @@ export function BaseContainer({
         variant === "minimal" ? containerWidth.minimal : containerWidth.default
       }
       display="flex"
-      flexWrap={isDesktop ? "nowrap" : "wrap"}
+      flexWrap={viewportWidth >= 1024 ? "nowrap" : "wrap"}
       justifyContent="center"
       gap={Tokens.Space600}
     >

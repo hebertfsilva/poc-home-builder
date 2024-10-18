@@ -1,0 +1,100 @@
+{
+  "containerType": "default",
+  "containerBlockType": "double",
+  "containerBlocksConfig": {
+    "A": {
+      "type": "large",
+      "config": {
+        "mobile": [
+          {
+            "order": 1,
+            "initialRow": 1,
+            "initialColumn": 1,
+            "widgetType": "1/2"
+          },
+          {
+            "order": 2,
+            "initialRow": 2,
+            "initialColumn": 1,
+            "widgetType": "1/2"
+          },
+          {
+            "order": 3,
+            "initialRow": 3,
+            "initialColumn": 1,
+            "widgetType": "4/2"
+          }
+        ],
+        "tablet": [
+          {
+            "order": 1,
+            "initialRow": 1,
+            "initialColumn": 1,
+            "widgetType": "2/2"
+          },
+          {
+            "order": 2,
+            "initialRow": 3,
+            "initialColumn": 1,
+            "widgetType": "2/3"
+          },
+          {
+            "order": 3,
+            "initialRow": 5,
+            "initialColumn": 1,
+            "widgetType": "4/5"
+          }
+        ],
+        "desktop": [
+          {
+            "order": 1,
+            "initialRow": 1,
+            "initialColumn": 1,
+            "widgetType": "3/3"
+          },
+          {
+            "order": 2,
+            "initialRow": 1,
+            "initialColumn": 5,
+            "widgetType": "2/3"
+          },
+          {
+            "order": 3,
+            "initialRow": 4,
+            "initialColumn": 1,
+            "widgetType": "4/5"
+          }
+        ]
+      }
+    },
+    "B": {
+      "type": "small",
+      "config": {
+        "mobile": [
+          {
+            "order": 1,
+            "initialRow": 1,
+            "initialColumn": 1,
+            "widgetType": "4/5"
+          }
+        ],
+        "tablet": [
+          {
+            "order": 1,
+            "initialRow": 1,
+            "initialColumn": 1,
+            "widgetType": "4/5"
+          }
+        ],
+        "desktop": [
+          {
+            "order": 1,
+            "initialRow": 1,
+            "initialColumn": 1,
+            "widgetType": "4/5"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
-import type { BlockConfig } from "./block";
+import type { BlockConfig, BlockType } from "./block";
 import type { ContainerBlockType, ContainerType } from "./container";
 
-type HomeConfigBase = {
+export type HomeConfigBase = {
   containerType: ContainerType;
   containerBlockType: ContainerBlockType;
   containerBlocksConfig: {
-    A: BlockConfig;
-    B?: BlockConfig;
+    A: { config: BlockConfig; type: BlockType };
+    B?: { config: BlockConfig; type: BlockType };
   };
 };
 
@@ -16,7 +16,7 @@ export type HomeConfigSingleBlock = Omit<
 > & {
   containerBlockType: Extract<ContainerBlockType, "single">;
   containerBlocksConfig: {
-    A: BlockConfig;
+    A: { config: BlockConfig; type: BlockType };
     B: never;
   };
 };
@@ -25,7 +25,7 @@ export type HomeConfigDoubleBlock = {
   containerType: Extract<ContainerType, "default">;
   containerBlockType: Extract<ContainerBlockType, "double">;
   containerBlocksConfig: {
-    A: BlockConfig;
-    B: BlockConfig;
+    A: { config: BlockConfig; type: BlockType };
+    B: { config: BlockConfig; type: BlockType };
   };
 };

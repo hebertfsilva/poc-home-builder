@@ -26,7 +26,7 @@ export function BaseBlock({ children, className, type }: BaseBlockProps) {
       <Grid
         height="100%"
         width="100%"
-        gap={Tokens.Space600}
+        gap={Tokens.Space400}
         templateColumns={"repeat(auto-fill, minmax(80px, 1fr))"}
         autoRows={"minmax(80px, auto)"}
       >
