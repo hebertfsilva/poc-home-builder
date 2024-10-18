@@ -13,6 +13,7 @@
     "@arcotech-services/iris-icons": "^2.13.0",
     "@arcotech-services/iris-react": "^3.9.0",
     "@arcotech-services/iris-tokens": "^3.10.0",
+    "@chakra-ui/layout": "^2.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
