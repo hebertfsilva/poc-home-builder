@@ -10,19 +10,19 @@
             "order": 1,
             "initialRow": 1,
             "initialColumn": 1,
-            "widgetType": "1/2"
+            "widgetType": "1/1"
           },
           {
             "order": 2,
             "initialRow": 2,
             "initialColumn": 1,
-            "widgetType": "1/2"
+            "widgetType": "2/1"
           },
           {
             "order": 3,
-            "initialRow": 3,
+            "initialRow": 4,
             "initialColumn": 1,
-            "widgetType": "4/2"
+            "widgetType": "4/1"
           }
         ],
         "tablet": [
@@ -34,13 +34,13 @@
           },
           {
             "order": 2,
-            "initialRow": 3,
-            "initialColumn": 1,
+            "initialRow": 1,
+            "initialColumn": 3,
             "widgetType": "2/3"
           },
           {
             "order": 3,
-            "initialRow": 5,
+            "initialRow": 3,
             "initialColumn": 1,
             "widgetType": "4/5"
           }
@@ -75,7 +75,7 @@
             "order": 1,
             "initialRow": 1,
             "initialColumn": 1,
-            "widgetType": "4/5"
+            "widgetType": "4/1"
           }
         ],
         "tablet": [
@@ -83,7 +83,7 @@
             "order": 1,
             "initialRow": 1,
             "initialColumn": 1,
-            "widgetType": "4/5"
+            "widgetType": "4/3"
           }
         ],
         "desktop": [

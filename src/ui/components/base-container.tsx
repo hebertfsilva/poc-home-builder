@@ -3,10 +3,9 @@ import { Grid } from "@chakra-ui/layout";
 
 import { containerWidth } from "../../core/constants/container";
 import type { ContainerBlockType } from "../../core/types/container";
-import type {
-  HomeConfigBase
-} from "../../core/types/home";
+import type { HomeConfigBase } from "../../core/types/home";
 import { getBlockWidth } from "../../core/utils/getBlockWidth";
+import { useHomeBlockConfig } from "../../core/utils/getHomeConfig";
 import { BaseBlock } from "./base-block";
 import { BaseWidget } from "./base-widget";
 
@@ -41,6 +40,8 @@ export function BaseContainer({
 }: BaseContainerProps) {
   const templateColumns = getContainerGridTemplate(blockType, blockConfig);
 
+  const { A, B } = useHomeBlockConfig(blockConfig);
+
   return (
     <Grid
       className={className}
@@ -51,10 +52,10 @@ export function BaseContainer({
       }
       display="grid"
       gap={Tokens.Space600}
-      templateColumns={{base: "1fr", lg: templateColumns }}
+      templateColumns={{ base: "1fr", lg: templateColumns }}
     >
       <BaseBlock type="A">
-        {blockConfig.A.config.desktop.map((item, index) => {
+        {A.map((item, index) => {
           if (!item) return null;
 
           return (
@@ -91,9 +92,9 @@ export function BaseContainer({
           );
         })}
       </BaseBlock>
-      {blockConfig?.B ? (
+      {!!B ? (
         <BaseBlock type="B">
-          {blockConfig.B.config.desktop.map((item, index) => {
+          {B.map((item, index) => {
             if (!item) return null;
 
             return (
