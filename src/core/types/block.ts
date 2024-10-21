@@ -1,16 +1,16 @@
 import { blockWidth } from "../constants/block";
 import { WidgetRatio } from "./widget";
 
-export type BlockType = keyof typeof blockWidth;
+export type BlockType = "A" | "B";
 
-export type BlockWidth = (typeof blockWidth)[BlockType];
+export type BlockVariant = keyof typeof blockWidth;
+
+export type BlockWidth = (typeof blockWidth)[BlockVariant];
 
 export type BlockItem = {
   order?: 1 | 2 | 3 | 4;
   initialRow: 1 | 2 | 3 | 4;
   initialColumn: 1 | 2 | 3 | 4 | 5;
-  finalRow?: 1 | 2 | 3 | 4;
-  finalColumn?: 1 | 2 | 3 | 4 | 5;
   widgetType: WidgetRatio;
 };
 

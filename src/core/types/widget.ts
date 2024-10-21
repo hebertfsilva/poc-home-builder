@@ -12,7 +12,6 @@ export type WidgetRatio =
   | "4/5";
 
 export type WidgetRatioConfig = {
-  aspectRatio: number;
   gridRowSpan: number;
   gridColumnSpan: number;
 };

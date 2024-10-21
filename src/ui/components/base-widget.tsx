@@ -24,8 +24,6 @@ export function BaseWidget({
   order,
   initialRow,
   initialColumn,
-  finalRow,
-  finalColumn,
   children,
   className,
   variant = "default",
@@ -37,12 +35,9 @@ export function BaseWidget({
       order={order}
       rowStart={initialRow}
       gridColumnStart={initialColumn}
-      rowEnd={finalRow}
-      colEnd={finalColumn}
       className={className}
       colSpan={widgetConfig.gridColumnSpan}
       rowSpan={widgetConfig.gridRowSpan}
-      aspectRatio={widgetConfig.aspectRatio}
       display="flex"
       flexDirection="column"
       alignItems="center"

@@ -1,37 +1,49 @@
 import { ReactNode } from "react";
 
-import { Box } from "@arcotech-services/iris-react";
 import { Tokens } from "@arcotech-services/iris-tokens";
 import { Grid } from "@chakra-ui/layout";
 
-import { blockWidth } from "../../core/constants/block";
-import { BlockType } from "../../core/types/block";
+import {
+  blockAGrid,
+  blockBGrid,
+  minBlockCellSize,
+} from "../../core/constants/block";
+import type { BlockType } from "../../core/types/block";
 
 export type BaseBlockProps = {
   children: ReactNode;
-  type: BlockType;
   className?: string;
+  type: BlockType;
 };
 
-const getFlexBasis = (type: BlockType) => {
-  const flexBasisIndex = blockWidth[type];
-  return `${flexBasisIndex * 100}%`;
+const getBlockGridConfig = (type: BlockType) => {
+  if (type === "A") {
+    return {
+      templateColumns: `repeat(${blockAGrid.columns}, minmax(${minBlockCellSize}, 1fr))`,
+      templateRows: `repeat(${blockAGrid.rows}, minmax(${minBlockCellSize}, 1fr))`,
+    };
+  }
+
+  return {
+    templateColumns: `repeat(${blockBGrid.columns}, minmax(${minBlockCellSize}, 1fr))`,
+    templateRows: `repeat(${blockBGrid.rows}, minmax(${minBlockCellSize}, 1fr))`,
+  };
 };
 
 export function BaseBlock({ children, className, type }: BaseBlockProps) {
-  const flexBasisValue = getFlexBasis(type);
+  const gridConfig = getBlockGridConfig(type);
 
   return (
-    <Box className={className} flexBasis={flexBasisValue}>
-      <Grid
-        height="100%"
-        width="100%"
-        gap={Tokens.Space400}
-        templateColumns={"repeat(auto-fill, minmax(80px, 1fr))"}
-        autoRows={"minmax(80px, auto)"}
-      >
-        {children}
-      </Grid>
-    </Box>
+    <Grid
+      className={className}
+      height="100%"
+      width="100%"
+      gap={Tokens.Space500}
+      templateColumns={{base: "1fr", lg: gridConfig.templateColumns }}
+      templateRows={gridConfig.templateRows}
+      data-blocktype={type}
+    >
+      {children}
+    </Grid>
   );
 }
