@@ -23,6 +23,7 @@ export const widgetRatios = {
   "2/3": { gridRowSpan: 2, gridColumnSpan: 3 },
   "3/3": { gridRowSpan: 3, gridColumnSpan: 3 },
   "4/3": { gridRowSpan: 4, gridColumnSpan: 3 },
+  "6/3": { gridRowSpan: 6, gridColumnSpan: 3 },
   "3/5": { gridRowSpan: 3, gridColumnSpan: 5 },
   "4/5": { gridRowSpan: 4, gridColumnSpan: 5 },
 } satisfies WidgetConfig;

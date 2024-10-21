@@ -11,8 +11,11 @@ export type WidgetRatio =
   | "2/3"
   | "3/3"
   | "4/3"
+  | "6/3"
   | "3/5"
   | "4/5";
+
+export type WidgetName = "avatar" | "schedule" | "feed" | "shortcuts" | "nudge";
 
 export type WidgetRatioConfig = {
   gridRowSpan: number;

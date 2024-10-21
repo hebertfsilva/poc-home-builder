@@ -1,5 +1,5 @@
 import { blockWidth } from "../constants/block";
-import { WidgetRatio } from "./widget";
+import { WidgetName, WidgetRatio } from "./widget";
 
 export type BlockType = "A" | "B";
 
@@ -12,6 +12,7 @@ export type BlockItem = {
   initialRow: 1 | 2 | 3 | 4;
   initialColumn: 1 | 2 | 3 | 4 | 5;
   widgetType: WidgetRatio;
+  widgetName: WidgetName;
 };
 
 // Each block contain up to 4 widgets

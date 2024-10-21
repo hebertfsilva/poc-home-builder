@@ -19,14 +19,25 @@ export type BaseBlockProps = {
 const getBlockGridConfig = (type: BlockType) => {
   if (type === "A") {
     return {
-      templateColumns: `repeat(${blockAGrid.columns}, minmax(${minBlockCellSize}, 1fr))`,
-      templateRows: `repeat(${blockAGrid.rows}, minmax(${minBlockCellSize}, 1fr))`,
+      templateColumns: {
+        base: "1fr",
+        lg: `repeat(${blockAGrid.columns - 2}, minmax(${minBlockCellSize}, 1fr))`,
+        xl: `repeat(${blockAGrid.columns}, minmax(${minBlockCellSize}, 1fr))`,
+      },
+      templateRows: {
+        base: `repeat(${blockAGrid.rows}, minmax(${minBlockCellSize}, 1fr))`,
+      },
     };
   }
 
   return {
-    templateColumns: `repeat(${blockBGrid.columns}, minmax(${minBlockCellSize}, 1fr))`,
-    templateRows: `repeat(${blockBGrid.rows}, minmax(${minBlockCellSize}, 1fr))`,
+    templateColumns: {
+      base: "1fr",
+      lg: `repeat(${blockBGrid.columns}, minmax(${minBlockCellSize}, 1fr))`,
+    },
+    templateRows: {
+      base: `repeat(${blockBGrid.rows}, minmax(${minBlockCellSize}, 1fr))`,
+    },
   };
 };
 
@@ -39,7 +50,7 @@ export function BaseBlock({ children, className, type }: BaseBlockProps) {
       height="100%"
       width="100%"
       gap={Tokens.Space500}
-      templateColumns={{base: "1fr", lg: gridConfig.templateColumns }}
+      templateColumns={gridConfig.templateColumns}
       templateRows={gridConfig.templateRows}
       data-blocktype={type}
     >

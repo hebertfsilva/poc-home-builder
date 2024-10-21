@@ -21,7 +21,12 @@ const getContainerGridTemplate = (
   containerBlocksConfig: HomeConfigBase["containerBlocksConfig"]
 ) => {
   if (blockType === "single") {
-    return "repeat(auto-fill, minmax(80px, 1fr)";
+    return {
+      templateColumns: {
+        base: "1fr",
+        lg: "repeat(auto-fill, minmax(80px, 1fr)",
+      },
+    };
   }
 
   const blockAWidth = getBlockWidth(containerBlocksConfig.A.type);
@@ -29,7 +34,15 @@ const getContainerGridTemplate = (
     ? getBlockWidth(containerBlocksConfig.B.type)
     : "0%";
 
-  return `${blockAWidth} ${blockBWidth}`;
+  // return `${blockAWidth} ${blockBWidth}`;
+
+  return {
+    gap: { base: Tokens.Space500, xl: Tokens.Space600 },
+    templateColumns: {
+      base: "1fr",
+      lg: `minmax(calc(${blockAWidth} - ${Tokens.Space600} / 2), 1fr) minmax(calc(${blockBWidth} - ${Tokens.Space600} / 2), 1fr)`,
+    },
+  };
 };
 
 export function BaseContainer({
@@ -38,7 +51,10 @@ export function BaseContainer({
   blockConfig,
   variant = "default",
 }: BaseContainerProps) {
-  const templateColumns = getContainerGridTemplate(blockType, blockConfig);
+  const { gap, templateColumns } = getContainerGridTemplate(
+    blockType,
+    blockConfig
+  );
 
   const { A, B } = useHomeBlockConfig(blockConfig);
 
@@ -51,8 +67,8 @@ export function BaseContainer({
         variant === "minimal" ? containerWidth.minimal : containerWidth.default
       }
       display="grid"
-      gap={Tokens.Space600}
-      templateColumns={{ base: "1fr", lg: templateColumns }}
+      gap={gap}
+      templateColumns={templateColumns}
     >
       <BaseBlock type="A">
         {A.map((item, index) => {
@@ -65,30 +81,8 @@ export function BaseContainer({
               initialRow={item.initialRow}
               initialColumn={item.initialColumn}
               key={`${item.widgetType}-${item.order}`}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  backgroundColor: "red",
-                  borderRadius: "inherit",
-                }}
-              >
-                <p
-                  style={{
-                    textAlign: "center",
-                    fontSize: Tokens.FontSize700,
-                    fontWeight: Tokens.FontWeightBold,
-                    color: "white",
-                    margin: "auto",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  {index}
-                </p>
-              </div>
-            </BaseWidget>
+              widgetName={item.widgetName}
+            />
           );
         })}
       </BaseBlock>
@@ -104,30 +98,8 @@ export function BaseContainer({
                 initialRow={item.initialRow}
                 initialColumn={item.initialColumn}
                 key={`${item.widgetType}-${item.order}`}
-              >
-                <div
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                    backgroundColor: "red",
-                    borderRadius: "inherit",
-                  }}
-                >
-                  <p
-                    style={{
-                      textAlign: "center",
-                      fontSize: Tokens.FontSize700,
-                      fontWeight: Tokens.FontWeightBold,
-                      color: "white",
-                      margin: "auto",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    {index}
-                  </p>
-                </div>
-              </BaseWidget>
+                widgetName={item.widgetName}
+              />
             );
           })}
         </BaseBlock>

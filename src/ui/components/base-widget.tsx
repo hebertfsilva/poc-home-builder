@@ -1,14 +1,12 @@
-import { ReactNode } from "react";
-
 import { Tokens } from "@arcotech-services/iris-tokens";
 import { GridItem } from "@chakra-ui/layout";
 
 import { widgetRatios } from "../../core/constants/widget";
 import { BlockItem } from "../../core/types/block";
 import type { WidgetRatio } from "../../core/types/widget";
+import { BaseWidgetContent } from "./base-widget-content";
 
 export type BaseWidgetProps = {
-  children: ReactNode;
   className?: string;
   variant?: "default" | "transparent";
 } & BlockItem;
@@ -24,9 +22,9 @@ export function BaseWidget({
   order,
   initialRow,
   initialColumn,
-  children,
   className,
   variant = "default",
+  widgetName,
 }: BaseWidgetProps) {
   const widgetConfig = getWidgetConfig(widgetType);
 
@@ -55,7 +53,7 @@ export function BaseWidget({
           : Tokens.ColorBackgroundPrimary
       }
     >
-      {children}
+      <BaseWidgetContent widgetName={widgetName} />
     </GridItem>
   );
 }
