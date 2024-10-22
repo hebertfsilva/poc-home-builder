@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, TopMenu } from "@arcotech-services/iris-react";
+import { Badge, Box, MenuMain, TopMenu } from "@arcotech-services/iris-react";
 import { Tokens } from "@arcotech-services/iris-tokens";
 
 import "./ui/styles/App.css";
@@ -27,6 +27,13 @@ const fetchConfig = async (homeVersion: string) => {
   }
 
   return null;
+};
+
+const dictionary = {
+  conquista: "Conquista",
+  spe: "SPE",
+  default: "SAS",
+  secretaria: "SAS Secretaria",
 };
 
 const fetchCellsStructure = async (homeVersion: string) => {
@@ -97,6 +104,12 @@ function App() {
             },
           ]}
         />
+        <MenuMain>
+          <strong>
+            Visualizando:{" "}
+            <Badge>{dictionary[homeVersion as keyof typeof dictionary]} </Badge>
+          </strong>
+        </MenuMain>
       </TopMenu>
       <Box
         as="main"
