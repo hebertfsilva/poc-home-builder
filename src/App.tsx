@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Badge, Box, MenuMain, TopMenu } from "@arcotech-services/iris-react";
+import { Box, MenuMain, TopMenu } from "@arcotech-services/iris-react";
 import { Tokens } from "@arcotech-services/iris-tokens";
 
 import "./ui/styles/App.css";
@@ -107,7 +107,9 @@ function App() {
         <MenuMain>
           <strong>
             Visualizando:{" "}
-            <Badge>{dictionary[homeVersion as keyof typeof dictionary]} </Badge>
+            <strong>
+              {dictionary[homeVersion as keyof typeof dictionary]}
+            </strong>
           </strong>
         </MenuMain>
       </TopMenu>
@@ -128,14 +130,14 @@ function App() {
           mainBlockSize={config.dynamicContainer.mainBlockSize}
           proportionSize={config.dynamicContainer.proportionSize}
         >
-          {config.homeBlocks.map((block, index) => (
+          {config.homeBlocks.map((block: any, index: number) => (
             <HomeBlock
               key={index}
               variant={block.variant}
               rows={block.rows}
               columns={block.columns}
             >
-              {cellsStructure[block.variant].map((cell) => (
+              {cellsStructure[block.variant].map((cell: any) => (
                 <HomeCell proportions={cell.proportions}>
                   <WidgetWrapper>{cell.content}</WidgetWrapper>
                 </HomeCell>
