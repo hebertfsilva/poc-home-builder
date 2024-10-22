@@ -1,100 +1,19 @@
 {
-  "containerType": "default",
-  "containerBlockType": "double",
-  "containerBlocksConfig": {
-    "A": {
-      "type": "large",
-      "config": {
-        "mobile": [
-          {
-            "order": 1,
-            "initialRow": 1,
-            "initialColumn": 1,
-            "widgetType": "1/1"
-          },
-          {
-            "order": 2,
-            "initialRow": 2,
-            "initialColumn": 1,
-            "widgetType": "2/1"
-          },
-          {
-            "order": 3,
-            "initialRow": 4,
-            "initialColumn": 1,
-            "widgetType": "4/1"
-          }
-        ],
-        "tablet": [
-          {
-            "order": 1,
-            "initialRow": 1,
-            "initialColumn": 1,
-            "widgetType": "2/2"
-          },
-          {
-            "order": 2,
-            "initialRow": 1,
-            "initialColumn": 3,
-            "widgetType": "2/3"
-          },
-          {
-            "order": 3,
-            "initialRow": 3,
-            "initialColumn": 1,
-            "widgetType": "4/5"
-          }
-        ],
-        "desktop": [
-          {
-            "order": 1,
-            "initialRow": 1,
-            "initialColumn": 1,
-            "widgetType": "3/3"
-          },
-          {
-            "order": 2,
-            "initialRow": 1,
-            "initialColumn": 4,
-            "widgetType": "2/3"
-          },
-          {
-            "order": 3,
-            "initialRow": 4,
-            "initialColumn": 1,
-            "widgetType": "4/5"
-          }
-        ]
-      }
+  "dynamicContainer": {
+    "type": "default",
+    "mainBlockSize": "60%",
+    "proportionSize": ["60px", "100px"]
+  },
+  "homeBlocks": [
+    {
+      "variant": "block-a",
+      "rows": 6,
+      "columns": 6
     },
-    "B": {
-      "type": "small",
-      "config": {
-        "mobile": [
-          {
-            "order": 1,
-            "initialRow": 1,
-            "initialColumn": 1,
-            "widgetType": "4/1"
-          }
-        ],
-        "tablet": [
-          {
-            "order": 1,
-            "initialRow": 1,
-            "initialColumn": 1,
-            "widgetType": "4/3"
-          }
-        ],
-        "desktop": [
-          {
-            "order": 1,
-            "initialRow": 1,
-            "initialColumn": 1,
-            "widgetType": "4/3"
-          }
-        ]
-      }
+    {
+      "variant": "block-b",
+      "rows": 4,
+      "columns": 6
     }
-  }
+  ]
 }
