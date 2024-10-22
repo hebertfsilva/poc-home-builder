@@ -63,8 +63,6 @@ function App() {
     setHomeVersion(home);
   };
 
-  if (!isFetched || !isCellsStructureFetched) return <>Aguarde..</>;
-
   return (
     <>
       <TopMenu>
@@ -122,27 +120,31 @@ function App() {
         alignItems="center"
         justifyContent="center"
       >
-        <DynamicContainer
-          type={config.dynamicContainer.type}
-          gridGap={config.dynamicContainer.gridGap}
-          mainBlockSize={config.dynamicContainer.mainBlockSize}
-          proportionSize={config.dynamicContainer.proportionSize}
-        >
-          {config.homeBlocks.map((block: any, index: number) => (
-            <HomeBlock
-              key={index}
-              variant={block.variant}
-              rows={block.rows}
-              columns={block.columns}
-            >
-              {cellsStructure[block.variant].map((cell: any) => (
-                <HomeCell proportions={cell.proportions}>
-                  <WidgetWrapper>{cell.content}</WidgetWrapper>
-                </HomeCell>
-              ))}
-            </HomeBlock>
-          ))}
-        </DynamicContainer>
+        {!isFetched || !isCellsStructureFetched ? (
+          <>Aguarde..</>
+        ) : (
+          <DynamicContainer
+            type={config.dynamicContainer.type}
+            gridGap={config.dynamicContainer.gridGap}
+            mainBlockSize={config.dynamicContainer.mainBlockSize}
+            proportionSize={config.dynamicContainer.proportionSize}
+          >
+            {config.homeBlocks.map((block: any, index: number) => (
+              <HomeBlock
+                key={index}
+                variant={block.variant}
+                rows={block.rows}
+                columns={block.columns}
+              >
+                {cellsStructure[block.variant].map((cell: any) => (
+                  <HomeCell proportions={cell.proportions}>
+                    <WidgetWrapper>{cell.content}</WidgetWrapper>
+                  </HomeCell>
+                ))}
+              </HomeBlock>
+            ))}
+          </DynamicContainer>
+        )}
       </Box>
     </>
   );
