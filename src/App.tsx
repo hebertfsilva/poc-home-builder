@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box } from "@arcotech-services/iris-react";
 import { Tokens } from "@arcotech-services/iris-tokens";
 
@@ -7,14 +6,13 @@ import "./ui/styles/App.css";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { CellsStructure, Config } from "./core/types/config";
 import { DynamicContainer } from "./ui/components/v2/dynamic-container";
 import { HomeBlock } from "./ui/components/v2/home-block";
 import { HomeCell } from "./ui/components/v2/home-cell";
 import { WidgetWrapper } from "./ui/components/v2/widget-wrapper";
 
-const fetchConfig = async () => {
-  const config = await fetch("/config.json", {
+const fetchConfig = async (homeVersion: string) => {
+  const config = await fetch(`/${homeVersion}/config.json`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -29,25 +27,27 @@ const fetchConfig = async () => {
   return null;
 };
 
-const fetchCellsStructure = async () => {
-  const response = await fetch("/cellsStructure.json");
+const fetchCellsStructure = async (homeVersion: string) => {
+  const response = await fetch(`/${homeVersion}/cellsStructure.json`);
   if (response.ok) {
-    return response.json();
+    return response.json() as Promise<any>;
   }
   return null;
 };
 
 function App() {
+  const homeVersion = "secretaria";
+
   const { data: config, isFetched } = useQuery({
     queryKey: ["config"],
-    queryFn: fetchConfig,
+    queryFn: () => fetchConfig(homeVersion),
     refetchInterval: 2000,
   });
 
   const { data: cellsStructure, isFetched: isCellsStructureFetched } = useQuery(
     {
       queryKey: ["cellsStructure"],
-      queryFn: fetchCellsStructure,
+      queryFn: () => fetchCellsStructure(homeVersion),
       refetchInterval: 2000,
     }
   );
