@@ -3,11 +3,13 @@ import { Tokens } from "@arcotech-services/iris-tokens";
 
 type WidgetWrapperProps = {
   children: React.ReactNode;
+  currentProportion?: string;
 };
 
-function WidgetWrapper({ children }: WidgetWrapperProps) {
+function WidgetWrapper({ children, currentProportion }: WidgetWrapperProps) {
   return (
     <Box
+      position="relative"
       width="100%"
       height="100%"
       borderStyle="solid"
@@ -20,6 +22,11 @@ function WidgetWrapper({ children }: WidgetWrapperProps) {
       backgroundColor={Tokens.ColorBackgroundPrimary}
     >
       {children}
+      <Box position="absolute" top={2} right={2} fontSize="12px">
+        <span>
+          <i>{currentProportion}</i>
+        </span>
+      </Box>
     </Box>
   );
 }

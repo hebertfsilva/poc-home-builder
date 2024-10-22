@@ -1,3 +1,5 @@
+import React, { ReactElement } from "react";
+
 import { GridItem } from "@chakra-ui/layout";
 
 import { getProportionSize } from "../../../core/utils/getProportionSize";
@@ -26,7 +28,9 @@ function HomeCell({ children, proportions }: HomeCellProps) {
 
   return (
     <GridItem gridColumn={gridColumn} gridRow={gridRow}>
-      {children}
+      {React.cloneElement(children as ReactElement, {
+        currentProportion,
+      })}
     </GridItem>
   );
 }
