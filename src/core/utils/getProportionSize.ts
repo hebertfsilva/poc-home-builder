@@ -3,7 +3,7 @@ import { Breakpoints, breakpointVariants } from "../constants/breakpoints";
 const getProportionSize = (
   proportionSize: string | string[],
   breakpoint: string,
-  defaultSize = "100px"
+  useBaseAsDefault = false
 ) => {
   if (typeof proportionSize === "string") {
     return proportionSize;
@@ -22,7 +22,11 @@ const getProportionSize = (
     return breakpointMap[breakpoint as Breakpoints];
   }
 
-  return proportionSize[proportionSize.length - 1] || defaultSize;
+  if (useBaseAsDefault) {
+    return proportionSize[0];
+  }
+
+  return proportionSize[proportionSize.length - 1];
 };
 
 export { getProportionSize };

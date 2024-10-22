@@ -44,6 +44,16 @@ export function DynamicContainer({
 
   const maxWidth = containerWidth[type];
 
+  const templateColumns = getProportionSize(
+    // [base, sm, md]
+    ["1fr", "1fr", `minmax(50%, ${mainBlockSize}) auto`],
+    breakpoint
+  );
+
+  console.log("minWidth", minWidth);
+  console.log("breakpoint", breakpoint);
+  console.log("proportionSize", proportionSize);
+
   return (
     <Box
       display="block"
@@ -51,10 +61,7 @@ export function DynamicContainer({
       maxWidth={maxWidth}
       className={`dynamic-container ${type}`}
     >
-      <Grid
-        className="home-container"
-        templateColumns={["1fr", `minmax(50%, ${mainBlockSize}) auto`]}
-      >
+      <Grid className="home-container" templateColumns={templateColumns}>
         {React.Children.map(children, (child) => {
           return React.cloneElement(child as ReactElement, {
             proportionSize: minWidth,

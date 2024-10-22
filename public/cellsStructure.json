@@ -1,40 +1,12 @@
 {
   "block-a": [
     {
-      "proportions": ["2x2"],
+      "proportions": ["4x2", "2x3", "2x2"],
       "content": "PERFIL"
     },
     {
-      "proportions": ["4x2"],
+      "proportions": ["4x2", "4x3", "4x2"],
       "content": "ATALHOS RÁPIDOS"
-    },
-    {
-      "proportions": ["2x1"],
-      "content": "2X1"
-    },
-    {
-      "proportions": ["4x2"],
-      "content": "NOTICIAS"
-    },
-    {
-      "proportions": ["1x1"],
-      "content": "1X1"
-    },
-    {
-      "proportions": ["1x1"],
-      "content": "1X1"
-    },
-    {
-      "proportions": ["2x2"],
-      "content": "DESTAQUE"
-    },
-    {
-      "proportions": ["3x2"],
-      "content": "3X2"
-    },
-    {
-      "proportions": ["1x2"],
-      "content": "1X2"
     }
   ],
   "block-b": [

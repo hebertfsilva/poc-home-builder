@@ -2,17 +2,21 @@ import React from "react";
 
 import { Grid } from "@chakra-ui/layout";
 
+import { HomeBlockConfig, HomeBlockOptions } from "../../../core/types/config";
+import { getProportionSize } from "../../../core/utils/getProportionSize";
+import { useBreakpoints } from "../../../hooks/useBreakpoints";
+
 export interface HomeBlockProps {
-  variant: "block-a" | "block-b";
+  variant: HomeBlockConfig["variant"];
   children: React.ReactNode;
   /**
    * Quantidade de colunas a serem exibidas
    */
-  columns: number;
+  columns: HomeBlockOptions;
   /**
    * Quantidade de linhas a serem exibidas
    */
-  rows: number;
+  rows: HomeBlockOptions;
 
   /**
    * Tamanho em px referente a uma proporção de 1:1
@@ -27,13 +31,30 @@ export function HomeBlock({
   children,
   columns = 6,
   rows = 6,
-  proportionSize,
+  proportionSize = "100px",
 }: HomeBlockProps) {
+  const breakpoint = useBreakpoints();
+
+  const calculateGridValue = (value: HomeBlockOptions) => {
+    const proportion = getProportionSize(
+      Array.isArray(value) ? value.map(String) : [String(value)],
+      breakpoint
+    );
+
+    if (proportion === "full") return "1fr";
+    if (proportion === "auto") return "auto";
+
+    return proportion;
+  };
+
+  const columnsValue = calculateGridValue(columns);
+  const rowsValue = calculateGridValue(rows);
+
   return (
     <Grid
       className={`block ${variant}`}
-      gridTemplateColumns={`repeat(${columns}, minmax(${proportionSize}, 1fr))`}
-      gridTemplateRows={`repeat(${rows}, minmax(${proportionSize}, 1fr))`}
+      gridTemplateColumns={`repeat(${columnsValue}, minmax(${proportionSize}, 1fr))`}
+      gridTemplateRows={`repeat(${rowsValue}, minmax(${proportionSize}, 1fr))`}
     >
       {children}
     </Grid>
