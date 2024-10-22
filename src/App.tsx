@@ -36,7 +36,7 @@ const fetchCellsStructure = async (homeVersion: string) => {
 };
 
 function App() {
-  const homeVersion = "secretaria";
+  const homeVersion = "conquista";
 
   const { data: config, isFetched } = useQuery({
     queryKey: ["config"],
