@@ -48,16 +48,14 @@ function App() {
   const [homeVersion, setHomeVersion] = useState("default");
 
   const { data: config, isFetched } = useQuery({
-    queryKey: ["config"],
+    queryKey: ["config", homeVersion],
     queryFn: () => fetchConfig(homeVersion),
-    refetchInterval: 2000,
   });
 
   const { data: cellsStructure, isFetched: isCellsStructureFetched } = useQuery(
     {
-      queryKey: ["cellsStructure"],
+      queryKey: ["cellsStructure", homeVersion],
       queryFn: () => fetchCellsStructure(homeVersion),
-      refetchInterval: 2000,
     }
   );
 
@@ -116,7 +114,7 @@ function App() {
       <Box
         as="main"
         width="100%"
-        height="calc(100vh - 70px)"
+        minHeight="calc(100vh - 70px)"
         overflowX="hidden"
         padding={Tokens.Space400}
         backgroundColor={Tokens.ColorBackgroundSecondary}
