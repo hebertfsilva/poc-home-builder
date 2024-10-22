@@ -19,6 +19,7 @@ interface DynamicContainerProps {
    * pode receber valores como array de breakpoints
    */
   proportionSize: string | string[];
+  gridGap: string | string[];
 }
 
 const containerWidth = {
@@ -32,21 +33,17 @@ export function DynamicContainer({
   type,
   mainBlockSize = "60%",
   proportionSize,
+  gridGap,
 }: DynamicContainerProps) {
-  if (children.length > 2) {
-    throw new Error(
-      "DynamicContainer can only have up to 2 HomeBlock children."
-    );
-  }
+  validateChildrenCount(children);
 
   const breakpoint = useBreakpoints();
   const minWidth = getProportionSize(proportionSize, breakpoint);
-
   const maxWidth = containerWidth[type];
-
-  const templateColumns = getProportionSize(
-    // [base, sm, md]
-    ["1fr", "1fr", `minmax(50%, ${mainBlockSize}) auto`],
+  const currentGridGap = getProportionSize(gridGap, breakpoint);
+  const templateColumns = calculateTemplateColumns(
+    mainBlockSize,
+    currentGridGap,
     breakpoint
   );
 
@@ -57,13 +54,42 @@ export function DynamicContainer({
       maxWidth={maxWidth}
       className={`dynamic-container ${type}`}
     >
-      <Grid className="home-container" templateColumns={templateColumns}>
-        {React.Children.map(children, (child) => {
-          return React.cloneElement(child as ReactElement, {
+      <Grid
+        className="home-container"
+        templateColumns={templateColumns}
+        gap={currentGridGap}
+      >
+        {React.Children.map(children, (child) =>
+          React.cloneElement(child as ReactElement, {
             proportionSize: minWidth,
-          });
-        })}
+            gridGap: currentGridGap,
+          })
+        )}
       </Grid>
     </Box>
+  );
+}
+
+function validateChildrenCount(children: ReactElement<HomeBlockProps>[]) {
+  if (children.length > 2) {
+    throw new Error(
+      "DynamicContainer can only have up to 2 HomeBlock children."
+    );
+  }
+}
+
+function calculateTemplateColumns(
+  mainBlockSize: string,
+  currentGridGap: string,
+  breakpoint: string
+) {
+  const GOLDEN_RATIO = 1.618;
+  return getProportionSize(
+    [
+      "1fr",
+      "1fr",
+      `minmax(50%, calc(${mainBlockSize} - calc(${currentGridGap} / ${GOLDEN_RATIO}))) auto`,
+    ],
+    breakpoint
   );
 }
