@@ -68,6 +68,7 @@ function App() {
     >
       <DynamicContainer
         type={config.dynamicContainer.type}
+        gridGap={config.dynamicContainer.gridGap}
         mainBlockSize={config.dynamicContainer.mainBlockSize}
         proportionSize={config.dynamicContainer.proportionSize}
       >

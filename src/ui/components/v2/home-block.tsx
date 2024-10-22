@@ -24,6 +24,12 @@ export interface HomeBlockProps {
    * @default "100px"
    */
   proportionSize?: string;
+  /**
+   * Tamanho em px referente ao gap do grid
+   * pode receber valores como array de breakpoints
+   * @default "0px"
+   */
+  gridGap?: string;
 }
 
 export function HomeBlock({
@@ -32,37 +38,68 @@ export function HomeBlock({
   columns = 6,
   rows = 6,
   proportionSize = "100px",
+  gridGap = "0px",
 }: HomeBlockProps) {
   const breakpoint = useBreakpoints();
+  const GOLDEN_RATIO = 0.96;
 
-  const calculateGridValue = (value: HomeBlockOptions) => {
-    const valuesArray = Array.isArray(value)
-      ? value.map(String)
-      : [String(value)];
-    return getProportionSize(valuesArray, breakpoint);
+  const calculateGridDimension = (dimension: HomeBlockOptions) => {
+    const dimensionArray = Array.isArray(dimension)
+      ? dimension.map(String)
+      : [String(dimension)];
+    return getProportionSize(dimensionArray, breakpoint);
   };
 
-  const columnsValue = calculateGridValue(columns);
-  const rowsValue = calculateGridValue(rows);
+  const columnsCount = calculateGridDimension(columns);
+  const rowsCount = calculateGridDimension(rows);
 
-  const rowConfig = {
-    gridTemplateRows:
-      rowsValue !== "auto"
-        ? `repeat(${rowsValue}, minmax(${proportionSize}, 1fr))`
-        : undefined,
-    gridAutoRows:
-      rowsValue === "auto" ? `minmax(${proportionSize}, 1fr)` : undefined,
-  };
+  const gridRowConfiguration = getGridRowConfiguration(
+    rowsCount,
+    proportionSize,
+    gridGap,
+    GOLDEN_RATIO
+  );
 
   return (
     <Grid
       className={`block ${variant}`}
-      gridTemplateColumns={`repeat(${columnsValue}, minmax(${proportionSize}, 1fr))`}
-      {...Object.fromEntries(
-        Object.entries(rowConfig).filter(([, value]) => value !== undefined)
+      gap={getProportionSize(gridGap, breakpoint)}
+      gridTemplateColumns={getGridTemplate(
+        columnsCount,
+        proportionSize,
+        gridGap,
+        GOLDEN_RATIO
       )}
+      {...gridRowConfiguration}
     >
       {children}
     </Grid>
   );
+}
+
+function getGridRowConfiguration(
+  rowsCount: string,
+  proportionSize: string,
+  gridGap: string,
+  goldenRatio: number
+) {
+  return {
+    gridTemplateRows:
+      rowsCount !== "auto"
+        ? `repeat(${rowsCount}, minmax(calc(${proportionSize} - calc(${gridGap} * ${goldenRatio})), 1fr))`
+        : undefined,
+    gridAutoRows:
+      rowsCount === "auto"
+        ? `minmax(calc(${proportionSize} - calc(${gridGap} * ${goldenRatio})), 1fr)`
+        : undefined,
+  };
+}
+
+function getGridTemplate(
+  columnsCount: string,
+  proportionSize: string,
+  gridGap: string,
+  goldenRatio: number
+) {
+  return `repeat(${columnsCount}, minmax(calc(${proportionSize} - calc(${gridGap} * ${goldenRatio})), 1fr))`;
 }
