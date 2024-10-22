@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box } from "@arcotech-services/iris-react";
+import { Box, TopMenu } from "@arcotech-services/iris-react";
 import { Tokens } from "@arcotech-services/iris-tokens";
 
 import "./ui/styles/App.css";
+
+import { useState } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -36,7 +38,7 @@ const fetchCellsStructure = async (homeVersion: string) => {
 };
 
 function App() {
-  const homeVersion = "conquista";
+  const [homeVersion, setHomeVersion] = useState("default");
 
   const { data: config, isFetched } = useQuery({
     queryKey: ["config"],
@@ -52,42 +54,84 @@ function App() {
     }
   );
 
+  const handleSelectHome = (home: string) => {
+    setHomeVersion(home);
+  };
+
   if (!isFetched || !isCellsStructureFetched) return <>Aguarde..</>;
 
   return (
-    <Box
-      as="main"
-      width="100%"
-      height="100vh"
-      overflowX="hidden"
-      padding={Tokens.Space400}
-      backgroundColor={Tokens.ColorBackgroundSecondary}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <DynamicContainer
-        type={config.dynamicContainer.type}
-        gridGap={config.dynamicContainer.gridGap}
-        mainBlockSize={config.dynamicContainer.mainBlockSize}
-        proportionSize={config.dynamicContainer.proportionSize}
+    <>
+      <TopMenu>
+        <TopMenu.Brand
+          alt="Alt"
+          src="https://cdn.arcotech.io/iris-ds/brand/arcotech/primary.svg"
+          triggerProps={{
+            logo: "arcotech",
+            text: "Arcotech",
+          }}
+          options={[
+            {
+              icon: "Airplay",
+              label: "Conquista",
+              isSelected: homeVersion === "conquista",
+              onClick: () => handleSelectHome("conquista"),
+            },
+            {
+              icon: "Airplay",
+              label: "SPE",
+              isSelected: homeVersion === "spe",
+              onClick: () => handleSelectHome("spe"),
+            },
+            {
+              icon: "Airplay",
+              label: "SAS",
+              isSelected: homeVersion === "default",
+              onClick: () => handleSelectHome("default"),
+            },
+            {
+              icon: "Airplay",
+              label: "SAS Secretaria",
+              isSelected: homeVersion === "secretaria",
+              onClick: () => handleSelectHome("secretaria"),
+            },
+          ]}
+        />
+      </TopMenu>
+      <Box
+        as="main"
+        width="100%"
+        height="calc(100vh - 70px)"
+        overflowX="hidden"
+        padding={Tokens.Space400}
+        backgroundColor={Tokens.ColorBackgroundSecondary}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
       >
-        {config.homeBlocks.map((block, index) => (
-          <HomeBlock
-            key={index}
-            variant={block.variant}
-            rows={block.rows}
-            columns={block.columns}
-          >
-            {cellsStructure[block.variant].map((cell) => (
-              <HomeCell proportions={cell.proportions}>
-                <WidgetWrapper>{cell.content}</WidgetWrapper>
-              </HomeCell>
-            ))}
-          </HomeBlock>
-        ))}
-      </DynamicContainer>
-    </Box>
+        <DynamicContainer
+          type={config.dynamicContainer.type}
+          gridGap={config.dynamicContainer.gridGap}
+          mainBlockSize={config.dynamicContainer.mainBlockSize}
+          proportionSize={config.dynamicContainer.proportionSize}
+        >
+          {config.homeBlocks.map((block, index) => (
+            <HomeBlock
+              key={index}
+              variant={block.variant}
+              rows={block.rows}
+              columns={block.columns}
+            >
+              {cellsStructure[block.variant].map((cell) => (
+                <HomeCell proportions={cell.proportions}>
+                  <WidgetWrapper>{cell.content}</WidgetWrapper>
+                </HomeCell>
+              ))}
+            </HomeBlock>
+          ))}
+        </DynamicContainer>
+      </Box>
+    </>
   );
 }
 
