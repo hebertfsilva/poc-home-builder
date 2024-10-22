@@ -50,10 +50,6 @@ export function DynamicContainer({
     breakpoint
   );
 
-  console.log("minWidth", minWidth);
-  console.log("breakpoint", breakpoint);
-  console.log("proportionSize", proportionSize);
-
   return (
     <Box
       display="block"

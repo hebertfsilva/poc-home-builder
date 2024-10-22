@@ -5,6 +5,8 @@ import { Tokens } from "@arcotech-services/iris-tokens";
 
 import "./ui/styles/App.css";
 
+import { useQuery } from "@tanstack/react-query";
+
 import { CellsStructure, Config } from "./core/types/config";
 import { DynamicContainer } from "./ui/components/v2/dynamic-container";
 import { HomeBlock } from "./ui/components/v2/home-block";
@@ -36,26 +38,21 @@ const fetchCellsStructure = async () => {
 };
 
 function App() {
-  const [config, setConfig] = React.useState<Config | null>(null);
-  const [cellsStructure, setCellsStructure] = React.useState<CellsStructure>(
-    {}
-  );
-  React.useEffect(() => {
-    setInterval(() => {
-      fetchConfig().then((config: Config | null) => {
-        if (config) {
-          setConfig(config);
-        }
-      });
-      fetchCellsStructure().then((cellsStructure) => {
-        if (cellsStructure) {
-          setCellsStructure(cellsStructure);
-        }
-      });
-    }, 1000);
-  }, []);
+  const { data: config, isFetched } = useQuery({
+    queryKey: ["config"],
+    queryFn: fetchConfig,
+    refetchInterval: 2000,
+  });
 
-  if (!config) return <>oops</>;
+  const { data: cellsStructure, isFetched: isCellsStructureFetched } = useQuery(
+    {
+      queryKey: ["cellsStructure"],
+      queryFn: fetchCellsStructure,
+      refetchInterval: 2000,
+    }
+  );
+
+  if (!isFetched || !isCellsStructureFetched) return <>Aguarde..</>;
 
   return (
     <Box
