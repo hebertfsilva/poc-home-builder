@@ -41,16 +41,18 @@ function App() {
     {}
   );
   React.useEffect(() => {
-    fetchConfig().then((config: Config | null) => {
-      if (config) {
-        setConfig(config);
-      }
-    });
-    fetchCellsStructure().then((cellsStructure) => {
-      if (cellsStructure) {
-        setCellsStructure(cellsStructure);
-      }
-    });
+    setInterval(() => {
+      fetchConfig().then((config: Config | null) => {
+        if (config) {
+          setConfig(config);
+        }
+      });
+      fetchCellsStructure().then((cellsStructure) => {
+        if (cellsStructure) {
+          setCellsStructure(cellsStructure);
+        }
+      });
+    }, 1000);
   }, []);
 
   if (!config) return <>oops</>;

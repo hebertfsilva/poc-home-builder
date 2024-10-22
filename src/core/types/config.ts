@@ -13,10 +13,12 @@ export interface DynamicContainerConfig {
   proportionSize: string[];
 }
 
+export type HomeBlockOptions = number | number[] | "full" | "auto";
+
 export interface HomeBlockConfig {
   variant: "block-a" | "block-b";
-  rows: number;
-  columns: number;
+  rows: HomeBlockOptions;
+  columns: HomeBlockOptions;
 }
 
 export interface Config {
