@@ -1,0 +1,20 @@
+{
+  "dynamicContainer": {
+    "type": "minimal",
+    "mainBlockSize": "55%",
+    "gridGap": ["10px", "10px", "10px", "10px", "15px"],
+    "proportionSize": ["60px", "60px", "80px", "80px"]
+  },
+  "homeBlocks": [
+    {
+      "variant": "block-a",
+      "rows": ["auto"],
+      "columns": [4]
+    },
+    {
+      "variant": "block-b",
+      "rows": [4, 6],
+      "columns": [4]
+    }
+  ]
+}

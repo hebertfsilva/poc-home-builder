@@ -1,0 +1,22 @@
+{
+  "block-a": [
+    {
+      "proportions": ["4x2"],
+      "content": "PERFIL"
+    },
+    {
+      "proportions": ["4x2"],
+      "content": "ATALHOS RÁPIDOS"
+    },
+    {
+      "proportions": ["4x3"],
+      "content": "NOTICIAS"
+    }
+  ],
+  "block-b": [
+    {
+      "proportions": ["full"],
+      "content": "AGENDA"
+    }
+  ]
+}
