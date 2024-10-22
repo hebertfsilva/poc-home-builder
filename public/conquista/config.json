@@ -8,7 +8,7 @@
   "homeBlocks": [
     {
       "variant": "block-a",
-      "rows": ["auto", "auto", 6],
+      "rows": ["auto", "auto", "auto", 6],
       "columns": [4, 6, 7]
     },
     {

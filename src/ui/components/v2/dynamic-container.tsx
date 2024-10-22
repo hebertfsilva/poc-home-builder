@@ -86,8 +86,9 @@ function calculateTemplateColumns(
   const GOLDEN_RATIO = 1.618;
   return getProportionSize(
     [
-      "1fr",
-      "1fr",
+      "1fr", //base
+      "1fr", //sm
+      "1fr", //md
       `minmax(50%, calc(${mainBlockSize} - calc(${currentGridGap} / ${GOLDEN_RATIO}))) auto`,
     ],
     breakpoint
