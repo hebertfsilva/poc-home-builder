@@ -9,8 +9,8 @@ export type BlockWidth = (typeof blockWidth)[BlockVariant];
 
 export type BlockItem = {
   order?: 1 | 2 | 3 | 4;
-  initialRow: 1 | 2 | 3 | 4;
-  initialColumn: 1 | 2 | 3 | 4 | 5;
+  initialRow: 1 | 2 | 3 | 4 | 5 | 6;
+  initialColumn: 1 | 2 | 3 | 4 | 5 | 6| 7;
   widgetType: WidgetRatio;
   widgetName: WidgetName;
 };
@@ -18,21 +18,21 @@ export type BlockItem = {
 // Each block contain up to 4 widgets
 export type BlockConfig = {
   mobile: [
-    BlockItem,
-    BlockItem | undefined,
-    BlockItem | undefined,
-    BlockItem | undefined,
+    firstItem: BlockItem,
+    secondItem?: BlockItem,
+    thirdItem?:BlockItem ,
+    fourthItem?:BlockItem,
   ];
   tablet: [
-    BlockItem,
-    BlockItem | undefined,
-    BlockItem | undefined,
-    BlockItem | undefined,
+    firstItem: BlockItem,
+    secondItem?: BlockItem,
+    thirdItem?:BlockItem ,
+    fourthItem?:BlockItem,
   ];
   desktop: [
-    BlockItem,
-    BlockItem | undefined,
-    BlockItem | undefined,
-    BlockItem | undefined,
+    firstItem: BlockItem,
+    secondItem?: BlockItem,
+    thirdItem?:BlockItem ,
+    fourthItem?:BlockItem,
   ];
 };

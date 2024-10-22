@@ -71,7 +71,7 @@ export function BaseContainer({
       templateColumns={templateColumns}
     >
       <BaseBlock type="A">
-        {A.map((item, index) => {
+        {A.map((item) => {
           if (!item) return null;
 
           return (
@@ -88,7 +88,7 @@ export function BaseContainer({
       </BaseBlock>
       {!!B ? (
         <BaseBlock type="B">
-          {B.map((item, index) => {
+          {B.map((item) => {
             if (!item) return null;
 
             return (

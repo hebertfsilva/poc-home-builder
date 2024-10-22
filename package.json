@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://github.com/hebertfsilva/poc-home-builder",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist"
   },
   "dependencies": {
     "@arcotech-services/iris-icons": "^2.13.0",
@@ -28,6 +31,7 @@
     "eslint": "^9.12.0",
     "eslint-plugin-react-hooks": "5.1.0-rc-fb9a90fa48-20240614",
     "eslint-plugin-react-refresh": "^0.4.12",
+    "gh-pages": "^6.2.0",
     "globals": "^15.11.0",
     "prettier": "^3.3.3",
     "prettier-plugin-packagejson": "^2.5.3",
