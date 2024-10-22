@@ -36,25 +36,31 @@ export function HomeBlock({
   const breakpoint = useBreakpoints();
 
   const calculateGridValue = (value: HomeBlockOptions) => {
-    const proportion = getProportionSize(
-      Array.isArray(value) ? value.map(String) : [String(value)],
-      breakpoint
-    );
-
-    if (proportion === "full") return "1fr";
-    if (proportion === "auto") return "auto";
-
-    return proportion;
+    const valuesArray = Array.isArray(value)
+      ? value.map(String)
+      : [String(value)];
+    return getProportionSize(valuesArray, breakpoint);
   };
 
   const columnsValue = calculateGridValue(columns);
   const rowsValue = calculateGridValue(rows);
 
+  const rowConfig = {
+    gridTemplateRows:
+      rowsValue !== "auto"
+        ? `repeat(${rowsValue}, minmax(${proportionSize}, 1fr))`
+        : undefined,
+    gridAutoRows:
+      rowsValue === "auto" ? `minmax(${proportionSize}, 1fr)` : undefined,
+  };
+
   return (
     <Grid
       className={`block ${variant}`}
       gridTemplateColumns={`repeat(${columnsValue}, minmax(${proportionSize}, 1fr))`}
-      gridTemplateRows={`repeat(${rowsValue}, minmax(${proportionSize}, 1fr))`}
+      {...Object.fromEntries(
+        Object.entries(rowConfig).filter(([, value]) => value !== undefined)
+      )}
     >
       {children}
     </Grid>
