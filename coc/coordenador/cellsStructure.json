@@ -15,7 +15,7 @@
   ],
   "block-b": [
     {
-      "proportions": ["4x4"],
+      "proportions": ["4x4" , "full"],
       "content": "AGENDA"
     }
   ]
