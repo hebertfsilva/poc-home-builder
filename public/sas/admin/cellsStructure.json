@@ -1,25 +1,44 @@
 {
   "block-a": [
     {
-      "proportions": ["4x2", "2x2", "2x2"],
+      "proportions": [
+        "4x2",
+        "2x2",
+        "2x2"
+      ],
       "content": "PERFIL"
     },
     {
-      "proportions": ["4x2", "4x2", "5x2"],
+      "proportions": [
+        "4x2",
+        "4x2",
+        "5x2"
+      ],
       "content": "ATALHOS RÁPIDOS"
     },
     {
-      "proportions": ["4x2", "3x2", "4x2"],
+      "proportions": [
+        "4x2",
+        "3x2",
+        "4x2"
+      ],
       "content": "NOTICIAS"
     },
     {
-      "proportions": ["4x2", "3x2"],
+      "proportions": [
+        "4x2",
+        "3x2"
+      ],
       "content": "DESTAQUE DE PRODUTO"
     }
   ],
   "block-b": [
     {
-      "proportions": ["full"],
+      "proportions": [
+        "4x4",
+        "4x4",
+        "full"
+      ],
       "content": "AGENDA"
     }
   ]
