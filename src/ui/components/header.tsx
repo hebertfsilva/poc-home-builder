@@ -25,8 +25,8 @@ export function AppHeader({ homeVersion, profile, handleSelectBu, handleSelectPr
         alt="Alt"
         src="https://cdn.arcotech.io/iris-ds/brand/arcotech/primary.svg"
         triggerProps={{
-          logo: "arcotech",
-          text: "Arcotech",
+          logo: homeVersion,
+          text: buDictionary[homeVersion],
         }}
         options={[
           {
@@ -37,9 +37,9 @@ export function AppHeader({ homeVersion, profile, handleSelectBu, handleSelectPr
           },
           {
             icon: "Airplay",
-            label: "SPE",
-            isSelected: homeVersion === "spe",
-            onClick: () => handleSelectBu("spe"),
+            label: "Positivo",
+            isSelected: homeVersion === "positivo",
+            onClick: () => handleSelectBu("positivo"),
           },
           {
             icon: "Airplay",

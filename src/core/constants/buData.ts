@@ -1,6 +1,6 @@
 export const buDictionary = {
   conquista: "Conquista",
-  spe: "SPE",
+  positivo: "Positivo",
   coc: "COC",
   sas: "SAS",
 } as const;

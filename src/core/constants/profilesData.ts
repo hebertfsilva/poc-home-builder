@@ -14,7 +14,7 @@ export const profileDictionary = {
     estudante: "Estudante",
     professor: "Professor",
   },
-  spe: {
+  positivo: {
     admin: "Admin",
     coordenador: "Coordenador",
     estudante: "Estudante",
