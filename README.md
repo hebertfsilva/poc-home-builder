@@ -1,50 +1,86 @@
-# React + TypeScript + Vite
+# Configuração do Projeto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este documento explica a lógica por trás da configuração dos arquivos `cellsStructure.json` e `config.json`, além de como os valores em arrays são influenciados pelos breakpoints definidos no projeto.
 
-Currently, two official plugins are available:
+## Estrutura do Arquivo `config.json`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O arquivo `config.json` é responsável por definir a configuração do contêiner dinâmico e dos blocos de layout da aplicação. Ele contém duas seções principais:
 
-## Expanding the ESLint configuration
+- **dynamicContainer**: Define o tipo de contêiner, o tamanho principal do bloco e o tamanho de proporção, que pode ser um array de valores que se ajustam com base nos breakpoints.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  ```json
+  {
+    "type": "default",
+    "mainBlockSize": "60%",
+    "proportionSize": ["60px", "100px"]
+  }
+  ```
 
-- Configure the top-level `parserOptions` property like this:
+- **homeBlocks**: Lista de blocos de layout, cada um com um `variant`, número de `rows` e `columns`.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+  ```json
+  [
+    {
+      "variant": "block-a",
+      "rows": 6,
+      "columns": 6
     },
-  },
-})
+    {
+      "variant": "block-b",
+      "rows": 4,
+      "columns": 6
+    }
+  ]
+  ```
+
+## Estrutura do Arquivo `cellsStructure.json`
+
+O arquivo `cellsStructure.json` define a estrutura dos `cells` para cada bloco de layout. Cada chave no objeto representa um `variant` de bloco, e o valor é um array de objetos que especificam as proporções e o conteúdo de cada célula.
+
+```json
+{
+  "block-a": [
+    {
+      "proportions": ["2x2"],
+      "content": "PERFIL"
+    },
+    {
+      "proportions": ["4x2"],
+      "content": "ATALHOS RÁPIDOS"
+    }
+  ],
+  "block-b": [
+    {
+      "proportions": ["full"],
+      "content": "AGENDA"
+    }
+  ]
+}
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Breakpoints e Arrays de Proporção
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Os valores dentro dos arrays, como `proportionSize` no `config.json` e `proportions` no `cellsStructure.json`, são ajustados com base nos breakpoints definidos no projeto. Os breakpoints são especificados no arquivo `breakpoints.ts` e são utilizados para adaptar o layout a diferentes tamanhos de tela.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Breakpoints Definidos
+
+Os breakpoints são definidos na seguinte ordem:
+
+```typescript
+const breakpointVariants: Breakpoints[] = [
+  "base",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "2xl",
+];
 ```
+
+Cada valor no array de proporção corresponde a um breakpoint, permitindo que o layout se ajuste dinamicamente conforme o tamanho da tela muda.
+
+## Considerações Finais
+
+Ao configurar os arquivos `cellsStructure.json` e `config.json`, é importante garantir que os valores nos arrays de proporção estejam alinhados com os breakpoints definidos. Isso assegura que o layout seja responsivo e se adapte corretamente a diferentes dispositivos.
+
+Para mais detalhes sobre a implementação dos breakpoints, consulte o arquivo `breakpoints.ts`:

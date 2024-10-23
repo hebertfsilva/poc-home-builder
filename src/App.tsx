@@ -111,8 +111,8 @@ function App() {
                 rows={block.rows}
                 columns={block.columns}
               >
-                {cellsStructure[block.variant].map((cell: any) => (
-                  <HomeCell proportions={cell.proportions}>
+                {cellsStructure[block.variant].map((cell: any, index: number) => (
+                  <HomeCell proportions={cell.proportions} key={`${index}-${cell.proportions}`}>
                     <WidgetWrapper>{cell.content}</WidgetWrapper>
                   </HomeCell>
                 ))}

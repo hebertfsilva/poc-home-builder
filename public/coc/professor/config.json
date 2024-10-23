@@ -21,10 +21,7 @@
     {
       "variant": "block-a",
       "rows": [
-        "auto",
-        "auto",
-        "auto",
-        6
+        "auto"
       ],
       "columns": [
         4,
@@ -35,9 +32,7 @@
     {
       "variant": "block-b",
       "rows": [
-        "auto",
-        "auto",
-        "auto",
+        4,
         6
       ],
       "columns": [
