@@ -1,0 +1,48 @@
+{
+  "dynamicContainer": {
+    "type": "default",
+    "mainBlockSize": "60%",
+    "gridGap": [
+      "10px",
+      "10px",
+      "10px",
+      "10px",
+      "15px"
+    ],
+    "proportionSize": [
+      "60px",
+      "60px",
+      "80px",
+      "80px",
+      "100px"
+    ]
+  },
+  "homeBlocks": [
+    {
+      "variant": "block-a",
+      "rows": [
+        "auto",
+        "auto",
+        "auto",
+        6
+      ],
+      "columns": [
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "variant": "block-b",
+      "rows": [
+        "auto",
+        "auto",
+        "auto",
+        6
+      ],
+      "columns": [
+        4
+      ]
+    }
+  ]
+}
