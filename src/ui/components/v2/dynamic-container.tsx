@@ -88,6 +88,7 @@ function calculateTemplateColumns(
     [
       "1fr",
       "1fr",
+      "1fr",
       `minmax(50%, calc(${mainBlockSize} - calc(${currentGridGap} / ${GOLDEN_RATIO}))) auto`,
     ],
     breakpoint

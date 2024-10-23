@@ -10,4 +10,9 @@ export default defineConfig({
     global: {},
   },
   base: "/poc-home-builder",
+  root: "./",
+  build: {
+    outDir: "dist",
+  },
+  publicDir: "public",
 });

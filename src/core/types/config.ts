@@ -10,7 +10,7 @@ export type CellsStructure = Record<string, Cell[]>;
 export interface DynamicContainerConfig {
   type: "default" | "full" | "minimal";
   mainBlockSize: string;
-  proportionSize: string[];
+  proportionSize: string | string[];
 }
 
 export type HomeBlockOptions = number | number[] | "full" | "auto";
